@@ -1,0 +1,32 @@
+version: '0.2'
+
+networks:
+  ros:
+    driver: bridge
+
+
+services:
+  pybullet_ompl:
+
+    # Path to dockerfile.
+    # '.' represents the current directory in which
+    # docker-compose.yml is present.
+    build:
+      context: pybullet_ompl
+
+    image: alex/motion-planning:0.2
+    container_name: everdream
+
+    environment:
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "NVIDIA_DRIVER_CAPABILITIES=all"
+      - "XAUTHORITYS"
+      - "DISPLAY=10.8.36.151:0.0"
+    volumes:
+      - ./pybullet_ompl/motion-planning:/home/alex/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    # runtime: nvidia
+    networks:
+      - ros
+    privileged: true
+    restart: always

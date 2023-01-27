@@ -1,0 +1,3 @@
+[submodule "pybullet_ompl/motion-planning"]
+	path = pybullet_ompl/motion-planning
+	url = git@github.com:Mildred34/basic_motionplanning.git
